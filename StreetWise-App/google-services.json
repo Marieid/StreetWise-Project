@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "240998260079",
+    "project_id": "cm3070-finalproject-streetwise",
+    "storage_bucket": "cm3070-finalproject-streetwise.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240998260079:android:2bdc51bef1afb7ce5a5c9a",
+        "android_client_info": {
+          "package_name": "com.marieid.streetwise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvbq8ZvMPb0nomeVdU1PJ_wbbzkjHsDfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
