@@ -1,0 +1,161 @@
+{% extends "main/base.html" %} {% load static %} {% block content %}
+<!-- Hero Section -->
+<header class="hero-section position-relative text-center">
+  <div class="hero-overlay"></div>
+  <div class="hero-content text-white position-relative">
+    <h1 class="display-4 fw-bold">
+      Welcome to <span class="text-primary">StreetWise</span>!
+    </h1>
+    <p class="lead">Your community-driven pedestrian safety platform.</p>
+  </div>
+</header>
+
+<main class="py-5 text-center">
+  <!-- App Preview Section -->
+  <section class="container my-5">
+    <img
+      src="{% static 'main/images/placeholder.png' %}"
+      alt="StreetWise App Preview"
+      class="img-fluid rounded shadow-lg mx-auto d-block"
+      width="500"
+    />
+    <p class="lead mt-4 text-muted">
+      Explore the app to learn how we make walking safer for everyone.
+    </p>
+    <div class="mt-4">
+      <a href="https://apps.apple.com" class="btn btn-primary btn-lg me-3"
+        >Download the App</a
+      >
+    </div>
+  </section>
+
+  <!-- Impact Statement Section -->
+  <section class="container my-5">
+    <p class="lead">
+      Fear of crime significantly impacts people’s daily activities, restricting
+      pedestrian mobility, limiting social interactions, and affecting overall
+      well-being. Research suggests that individuals who feel unsafe while
+      walking in urban areas often alter their behavior by avoiding certain
+      routes, reducing outdoor activity after dark, or relying on alternative
+      transport methods.
+    </p>
+  </section>
+
+  <!-- How StreetWise Helps Section -->
+  <section class="container my-5">
+    <h2 class="mb-4">How StreetWise Helps Make Streets Safer for Everyone</h2>
+    <p class="mb-4">
+      To address these challenges, we developed StreetWise—a mobile-first,
+      community-sourced maps application. It provides real-time safety
+      information, helping users select the safest walking routes based on
+      incident reports.
+    </p>
+    <img
+      src="{% static 'main/images/SWRoutes.jpg' %}"
+      alt="StreetWise App Preview"
+      class="img-fluid rounded shadow-lg mx-auto d-block"
+      width="500"
+    />
+    <div class="row mt-5">
+      <!-- Feature Card: Safe Route -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Green: Safe Route</h5>
+            <p class="card-text flex-grow-1">
+              Indicates a safe route with minimal safety concerns.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Feature Card: Dynamic Suggestions -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Yellow: Moderate Risk</h5>
+            <p class="card-text flex-grow-1">
+              Highlights routes with some safety concerns that users should be
+              aware of.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Feature Card: High Risk -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Red: High-Risk Areas</h5>
+            <p class="card-text flex-grow-1">
+              Identifies high-risk areas where users should exercise caution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works - Detailed Section -->
+  <section class="container my-5">
+    <h2 class="mb-4">How It Works</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Report Incidents</h5>
+            <p class="card-text flex-grow-1">
+              Contribute to a safer community by reporting incidents such as
+              poor lighting, obstacles, or harassment.
+            </p>
+          </div>
+        </div>
+        <div class="card-image-container mt-2">
+          <img
+            src="{% static 'main/images/SWReport.jpg' %}"
+            alt="Report Incidents"
+            class="img-fluid rounded shadow-lg"
+            width="500"
+          />
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Dynamic Route Suggestions</h5>
+            <p class="card-text flex-grow-1">
+              Our system suggests the safest walking routes using a color-coded
+              system to represent real-time safety levels.
+            </p>
+          </div>
+        </div>
+        <div class="card-image-container mt-2">
+          <img
+            src="{% static 'main/images/SWRoutes.jpg' %}"
+            alt="Dynamic Route Suggestions"
+            class="img-fluid rounded shadow-lg"
+            width="500"
+          />
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Real-time Updates</h5>
+            <p class="card-text flex-grow-1">
+              Get live updates on safety conditions, ensuring you always have
+              the latest information to stay safe.
+            </p>
+          </div>
+        </div>
+        <div class="card-image-container mt-2">
+          <img
+            src="{% static 'main/images/SWRoutes1.jpg' %}"
+            alt="Real-time Updates"
+            class="img-fluid rounded shadow-lg"
+            width="500"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

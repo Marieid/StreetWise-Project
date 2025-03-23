@@ -1,0 +1,111 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<!-- Hero Section -->
+<header class="py-5 text-center">
+  <h1 class="display-4 fw-bold">About <span class="text-primary">StreetWise</span></h1>
+  <p class="lead">
+    Enhancing pedestrian safety through real-time community collaboration.
+  </p>
+</header>
+
+<main class="py-5">
+  <!-- Our Mission Section -->
+  <section class="container my-5">
+    <h2 class="mb-4">Our Mission</h2>
+    <p class="lead">
+      StreetWise is dedicated to enhancing pedestrian safety in our community.
+      We empower users with real-time safety information so they can make informed
+      decisions about their walking routes.
+    </p>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="container my-5">
+    <h2 class="mb-4">How It Works</h2>
+    <div class="row">
+      <!-- Report Incidents -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header">Report Incidents</div>
+          <div class="card-body">
+            <p class="card-text">
+              Contribute to a safer community by reporting incidents such as poor lighting,
+              obstacles, or harassment to build a comprehensive safety map.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Dynamic Route Suggestions -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header">Dynamic Route Suggestions</div>
+          <div class="card-body">
+            <p class="card-text">
+              Our system suggests the safest walking routes using a color-coded system
+              that reflects real-time safety levels.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Real-time Updates -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header">Real-time Updates</div>
+          <div class="card-body">
+            <p class="card-text">
+              Receive live updates on safety conditions, ensuring you always have the latest
+              information to stay safe.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Analysis Section -->
+  <section class="container my-5">
+    <h2 class="mb-4">Data Analysis</h2>
+    <p class="mb-4">
+      Our data analysis tools provide valuable insights into pedestrian safety trends and
+      patterns. Explore key charts and trends below:
+    </p>
+    <!-- Incident Type Distribution -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">Incident Type Distribution</div>
+      <div class="card-body">
+        <p class="card-text">
+          View the distribution of incident types reported by users to identify the most common safety issues.
+        </p>
+      </div>
+    </div>
+    <!-- Incident Trends Over Time -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">Incident Trends Over Time</div>
+      <div class="card-body">
+        <p class="card-text">
+          See the number of incidents reported over the past 30 days and track emerging trends.
+        </p>
+      </div>
+    </div>
+    <!-- Incident Heatmap -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">Incident Heatmap</div>
+      <div class="card-body">
+        <p class="card-text">
+          Visualize incident density across different areas to quickly identify safety hotspots.
+        </p>
+      </div>
+    </div>
+    <!-- Calendar Heatmap -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">Calendar Heatmap</div>
+      <div class="card-body">
+        <p class="card-text">
+          Discover patterns in incident reports by day of the week to understand when safety issues peak.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

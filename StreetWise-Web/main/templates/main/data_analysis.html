@@ -1,0 +1,207 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<header class="py-5 text-center">
+  <h1 class="display-4 fw-bold">
+    StreetWise <span class="text-primary">Data</span> Analysis
+  </h1>
+  <p class="lead">
+    Visualizing community-driven safety data to understand and improve pedestrian safety.
+  </p>
+</header>
+
+<main class="py-4">
+  <section class="container text-center">
+    <p class="lead">
+      Explore data insights that help shape safer pedestrian environments.
+    </p>
+  </section>
+
+  <!-- Incident Type Distribution Card -->
+  <section class="container mt-4">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        Incident Type Distribution
+      </div>
+      <div class="card-body">
+        <div class="chart-container mb-3">
+          <canvas id="incident-type-chart"></canvas>
+        </div>
+        <p class="mb-0">This chart shows the distribution of different incident types reported by users, highlighting the most common safety issues in the community.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Incident Trends Over Time Card -->
+  <section class="container mt-4">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        Incident Trends Over Time
+      </div>
+      <div class="card-body">
+        <div class="chart-container mb-3">
+          <canvas id="incident-trends-chart"></canvas>
+        </div>
+        <p class="mb-0">This chart displays the number of incidents reported over the past 30 days, helping track trends and identify any spikes in safety issues.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Incident Heatmap Card -->
+  <section class="container mt-4">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        Incident Heatmap
+      </div>
+      <div class="card-body">
+        <div id="heatmap-container" class="chart-container mb-3" style="height: 400px;"></div>
+        <p class="mb-0">The heatmap visualizes the density of incidents reported in different areas, identifying hotspots where safety issues are more prevalent.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendar Heatmap Card -->
+  <section class="container mt-4">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        Calendar Heatmap
+      </div>
+      <div class="card-body">
+        <div class="chart-container mb-3">
+          <canvas id="calendar-heatmap"></canvas>
+        </div>
+        <p class="mb-0">This chart shows the distribution of incidents by day of the week, helping identify patterns in safety issues based on the day.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaJJ8SgwhCT5K7y01zkWx7SYz2J9TpOEA&libraries=visualization"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    async function fetchData(url) {
+      try {
+        const response = await fetch(url);
+        return await response.json();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    function createIncidentTypeChart(data) {
+      const ctx = document.getElementById("incident-type-chart").getContext("2d");
+      const labels = data.map((item) => item.type);
+      const counts = data.map((item) => item.count);
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Incident Counts by Type",
+            data: counts,
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1,
+          }],
+        },
+        options: { scales: { y: { beginAtZero: true } } },
+      });
+    }
+
+    function createIncidentTrendsChart(data) {
+      const ctx = document.getElementById("incident-trends-chart").getContext("2d");
+      const labels = data.map((item) => item.date);
+      const counts = data.map((item) => item.count);
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Incident Trends Over Time",
+            data: counts,
+            backgroundColor: "rgba(153, 102, 255, 0.2)",
+            borderColor: "rgba(153, 102, 255, 1)",
+            borderWidth: 1,
+            fill: true,
+          }],
+        },
+        options: { scales: { y: { beginAtZero: true } } },
+      });
+    }
+
+    function createCalendarHeatmap(data) {
+      const ctx = document.getElementById("calendar-heatmap").getContext("2d");
+      const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const counts = Array(7).fill(0);
+      data.forEach((item) => {
+        const date = new Date(item.date);
+        const dayOfWeek = date.getDay();
+        counts[dayOfWeek] += item.count;
+      });
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: daysOfWeek,
+          datasets: [{
+            label: "Incident Counts by Day of Week",
+            data: counts,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+          }],
+        },
+        options: { scales: { y: { beginAtZero: true } } },
+      });
+    }
+
+    function createGoogleMapsHeatmap(data) {
+      const map = new google.maps.Map(
+        document.getElementById("heatmap-container"),
+        {
+          center: { lat: 50.8503, lng: 4.3517 },
+          zoom: 13,
+          mapTypeId: "satellite",
+        }
+      );
+      const heatmapData = data.map(
+        (incident) => new google.maps.LatLng(
+          incident.location.latitude,
+          incident.location.longitude
+        )
+      );
+      const heatmap = new google.maps.visualization.HeatmapLayer({
+        data: heatmapData,
+        radius: 25,
+      });
+      heatmap.setMap(map);
+      data.forEach((incident) => {
+        const marker = new google.maps.Marker({
+          position: { lat: incident.location.latitude, lng: incident.location.longitude },
+          map: map,
+          title: incident.type,
+        });
+        const infoWindow = new google.maps.InfoWindow({
+          content: `<div><strong>Type:</strong> ${incident.type}<br><strong>Comment:</strong> ${incident.comment}<br><strong>Timestamp:</strong> ${new Date(incident.timestamp).toLocaleString()}</div>`,
+        });
+        marker.addListener("click", () => {
+          infoWindow.open(map, marker);
+        });
+      });
+    }
+
+    const incidentTypeData = await fetchData("/api/incidents/count-by-type/");
+    createIncidentTypeChart(incidentTypeData);
+
+    const incidentTrendsData = await fetchData("/api/incidents/trends/");
+    createIncidentTrendsChart(incidentTrendsData);
+
+    const incidentByDayData = await fetchData("/api/incidents/count-by-day/");
+    createCalendarHeatmap(incidentByDayData);
+
+    const incidentHeatmapData = await fetchData("/api/incidents/");
+    createGoogleMapsHeatmap(incidentHeatmapData);
+  });
+</script>
+{% endblock %}

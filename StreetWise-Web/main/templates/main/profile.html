@@ -1,0 +1,147 @@
+{% extends "main/base.html" %} {% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">User Profile</h2>
+
+  <!-- Profile Information Section -->
+  <div class="row mb-5">
+    <div class="col-md-4">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <img
+            src="{{ photo_url }}"
+            alt="Profile Picture"
+            class="img-fluid rounded-circle mb-3"
+            style="max-width: 150px"
+          />
+          <h5 class="card-title">{{ display_name }}</h5>
+          <p class="card-text"><strong>Email:</strong> {{ user_email }}</p>
+          <p class="card-text">
+            <strong>Credibility Score:</strong> {{ credibility_score }}
+          </p>
+          <p class="card-text"><strong>Joined:</strong> {{ created_at }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Optionally, you could add an Edit Profile form or additional info here in another column -->
+    <div class="col-md-8">
+      <!-- For now, you might leave it empty or use it for a future "Edit Profile" widget -->
+    </div>
+  </div>
+
+  <!-- Reports Section with Tabs -->
+  <h3 class="mb-4 text-center">Your Reports</h3>
+  <ul class="nav nav-tabs" id="reportTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="active-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#activeReports"
+        type="button"
+        role="tab"
+        aria-controls="activeReports"
+        aria-selected="true"
+      >
+        Active Reports
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="archived-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#archivedReports"
+        type="button"
+        role="tab"
+        aria-controls="archivedReports"
+        aria-selected="false"
+      >
+        Archived Reports
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="reportTabsContent">
+    <!-- Active Reports Tab -->
+    <div
+      class="tab-pane fade show active"
+      id="activeReports"
+      role="tabpanel"
+      aria-labelledby="active-tab"
+    >
+      <div class="card mt-3 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h5 class="card-title mb-0">Incidents</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for incident in user_reports.incidents %}
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <strong>{{ incident.type }}</strong>
+              <small class="text-muted">
+                {% if incident.formatted_timestamp %} {{
+                incident.formatted_timestamp }} {% else %} {{
+                incident.timestamp|date:"F d, Y, h:i A" }} {% endif %}
+              </small>
+            </div>
+            <p class="mb-1 mt-2">
+              {% if incident.comment %} {{ incident.comment }} {% else %}
+              <em>No comment provided.</em>
+              {% endif %}
+            </p>
+          </li>
+          {% empty %}
+          <li class="list-group-item">
+            <em>No incidents reported.</em>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <!-- Archived Reports Tab -->
+    <div
+      class="tab-pane fade"
+      id="archivedReports"
+      role="tabpanel"
+      aria-labelledby="archived-tab"
+    >
+      <div class="card mt-3 shadow-sm">
+        <div class="card-header bg-secondary text-white">
+          <h5 class="card-title mb-0">Archived Reports</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for archive in user_reports.archived %}
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <strong>{{ archive.type }}</strong>
+              <small class="text-muted">
+                {% if archive.formatted_timestamp %} {{
+                archive.formatted_timestamp }} {% else %} {{ archive.timestamp
+                }} {% endif %}
+              </small>
+            </div>
+            <p class="mb-1 mt-2">
+              {% if archive.description %} {{ archive.description }} {% else %}
+              <em>No additional details.</em>
+              {% endif %}
+            </p>
+          </li>
+          {% empty %}
+          <li class="list-group-item">
+            <em>No archived reports available.</em>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Call-to-Action -->
+  <div class="mt-4 text-center">
+    <p>
+      If you don't have an account yet or haven't signed up yet, please
+      <a href="{% url 'download_app' %}">download our mobile app</a> and
+      complete the registration process.
+    </p>
+  </div>
+</div>
+{% endblock %}
