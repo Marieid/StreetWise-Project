@@ -94,7 +94,7 @@ Access the dashboard at: [http://localhost:8000](http://localhost:8000)
 
 _Dashboard sample:_
 
-<img src="https://github.com/user-attachments/assets/3f9a2628-2791-40e8-9802-1d88e65f94d3" width="1000"/> <img src="https://github.com/user-attachments/assets/79d81992-194b-467b-a86a-aac671304d4a" width="1000"/> <img src="https://github.com/user-attachments/assets/cb2cd32f-5ab8-4cd2-a244-156fa817b8fa" width="1000"/> <img src="https://github.com/user-attachments/assets/69f5bc01-3354-4d2b-b982-bd969d38811e" width="1000"/> <img src="https://github.com/user-attachments/assets/b544c593-249e-44c8-83f4-8502ddf76a94" width="100"/>
+<img src="https://github.com/user-attachments/assets/3f9a2628-2791-40e8-9802-1d88e65f94d3" width="1000"/> <img src="https://github.com/user-attachments/assets/79d81992-194b-467b-a86a-aac671304d4a" width="1000"/> <img src="https://github.com/user-attachments/assets/cb2cd32f-5ab8-4cd2-a244-156fa817b8fa" width="1000"/> <img src="https://github.com/user-attachments/assets/69f5bc01-3354-4d2b-b982-bd969d38811e" width="1000"/> <img src="https://github.com/user-attachments/assets/b544c593-249e-44c8-83f4-8502ddf76a94" width="1000"/>
 
 ---
 
