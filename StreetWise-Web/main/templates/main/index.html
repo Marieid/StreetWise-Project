@@ -1,6 +1,6 @@
 {% extends "main/base.html" %} {% load static %} {% block content %}
 <!-- Hero Section -->
-<header class="hero-section position-relative text-center">
+<header class="hero-section position-relative text-center" id="hero-index">
   <div class="hero-overlay"></div>
   <div class="hero-content text-white position-relative">
     <h1 class="display-4 fw-bold">
@@ -50,14 +50,6 @@
       information, helping users select the safest walking routes based on
       incident reports.
     </p>
-    <div class="card-image-container" id="imgg">
-      <img
-        src="{% static 'main/images/SWRoutes.jpg' %}"
-        alt="StreetWise App Preview"
-        class="img-fluid rounded shadow-lg mx-auto d-block"
-        width="300"
-      />
-    </div>
 
     <div class="row mt-5">
       <!-- Feature Card: Safe Route -->
@@ -93,6 +85,14 @@
             </p>
           </div>
         </div>
+      </div>
+      <div class="card-image-container" id="imgg">
+        <img
+          src="{% static 'main/images/SWRoutes.jpg' %}"
+          alt="StreetWise App Preview"
+          class="img-fluid rounded shadow-lg mx-auto d-block"
+          width="300"
+        />
       </div>
     </div>
   </section>

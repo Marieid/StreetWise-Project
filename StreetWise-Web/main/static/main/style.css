@@ -215,6 +215,7 @@ p {
 }
 #imgg{
     height: 800px;
+    margin-top: 10%;
 }
 /* Reusable large image class */
 .large-feature-img {
@@ -244,12 +245,30 @@ footer a:hover {
     text-decoration: underline;
 }
 
+textarea{
+    resize: vertical;
+    border: 1px solid gold;
+    width: 90%;
+}
+
 /* Hero Section */
 .hero-section {
     position: relative;
-    background: url("/static/main/images/SWMain.jpg") no-repeat center center;
-    padding: 5rem 0;
+    background-size: cover; 
+    height: 50vh;
+    margin: 0; 
+    padding: 0; 
     animation: fadeIn 1.5s ease-in-out;
+}
+
+#hero-index{
+    background: url("/static/main/images/map.jpg") no-repeat center center;
+}
+#hero-about{
+    background: url("/static/main/images/pedestrians.jpg") no-repeat center center;
+}
+#hero-data{
+    background: url("/static/main/images/data.jpg") no-repeat center center;
 }
 
 .hero-overlay {
@@ -258,13 +277,16 @@ footer a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay */
+    z-index: 1; /* Ensure it appears above the background image */
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Ensure the content appears above the overlay */
     animation: slideIn 1.5s ease-in-out;
+    padding: 20px;
+    color: #fff; /* Ensure text is readable */
 }
 
 /* Larger profile card */
