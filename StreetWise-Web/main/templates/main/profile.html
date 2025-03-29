@@ -4,15 +4,10 @@
 
   <!-- Profile Information Section -->
   <div class="row mb-5">
-    <div class="col-md-4">
-      <div class="card text-center shadow-sm">
+    <div class="col-md-12 d-flex justify-content-center">
+      <div class="card profile-card shadow-sm">
         <div class="card-body">
-          <img
-            src="{{ photo_url }}"
-            alt="Profile Picture"
-            class="img-fluid rounded-circle mb-3"
-            style="max-width: 150px"
-          />
+          <img src="{{ photo_url }}" alt="Profile Picture" class="img-fluid" />
           <h5 class="card-title">{{ display_name }}</h5>
           <p class="card-text"><strong>Email:</strong> {{ user_email }}</p>
           <p class="card-text">
@@ -21,10 +16,6 @@
           <p class="card-text"><strong>Joined:</strong> {{ created_at }}</p>
         </div>
       </div>
-    </div>
-    <!-- Optionally, you could add an Edit Profile form or additional info here in another column -->
-    <div class="col-md-8">
-      <!-- For now, you might leave it empty or use it for a future "Edit Profile" widget -->
     </div>
   </div>
 
@@ -69,7 +60,7 @@
       aria-labelledby="active-tab"
     >
       <div class="card mt-3 shadow-sm">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header text-white">
           <h5 class="card-title mb-0">Incidents</h5>
         </div>
         <ul class="list-group list-group-flush">
@@ -135,8 +126,8 @@
   <div class="mt-4 text-center">
     <p>
       If you don't have an account yet or haven't signed up yet, please
-      <a href="{% url 'download_app' %}">download our mobile app</a> and
-      complete the registration process.
+      <a href="{% url 'download_app' %}" id="link">download our mobile app</a>
+      and complete the registration process.
     </p>
   </div>
 </div>

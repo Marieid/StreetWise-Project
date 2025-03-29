@@ -63,8 +63,9 @@ p {
 .chart-container {
     position: relative;
     margin: auto;
-    height: 300px;
-    width: 100%;
+    height: 500px; /* Increase height */
+    width: 100%; /* Keep it responsive */
+    max-width: 800px; /* Set a maximum width */
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 10px;
@@ -78,7 +79,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #007bff;
+    /* background-color: #007bff; */
     padding: 12px 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -107,11 +108,11 @@ p {
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-    color: #ffeb3b;
+    color: gold;
 }
 
 .navbar-nav .nav-link:focus {
-    outline: 2px solid #ffeb3b;
+    outline: 2px solid gold;
     outline-offset: 2px;
 }
 
@@ -130,6 +131,7 @@ p {
 
 .btn {
     transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: gold;
 }
 
 .btn:hover {
@@ -148,13 +150,14 @@ p {
 }
 
 .card-header {
-
-    color: #fff;
+    color:white;
+    background-color: gold;
     padding: 8px 12px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
 }
 
 .card-body {
@@ -185,8 +188,13 @@ p {
 }
 
 .card-image-container img:hover {
-    border: 3px solid #19c5db;
+    border: 3px solid gold;
     filter: brightness(0.9);
+}
+.inc-text{
+    color:gold;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 .green-route{
     background: #479e4c;
@@ -202,7 +210,12 @@ p {
     background: #e63946;
     color: #fff;
 }
-
+#link{
+    color:gold;
+}
+#imgg{
+    height: 800px;
+}
 /* Reusable large image class */
 .large-feature-img {
     max-width: 100%;
@@ -223,7 +236,7 @@ footer {
 }
 
 footer a {
-    color: #ffeb3b;
+    color: gold;
     text-decoration: none;
 }
 
@@ -252,6 +265,35 @@ footer a:hover {
     position: relative;
     z-index: 2;
     animation: slideIn 1.5s ease-in-out;
+}
+
+/* Larger profile card */
+.profile-card {
+    max-width: 500px; /* Increase the width */
+    margin: 0 auto; /* Center the card horizontally */
+    padding: 30px; /* Add more padding */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    background-color: #fff; /* White background */
+    text-align: center; /* Center-align content */
+}
+
+.profile-card img {
+    max-width: 250px; /* Increase profile picture size */
+    height: auto;
+    border-radius: 50%; /* Make the image circular */
+    margin-bottom: 20px;
+}
+
+.profile-card h5 {
+    font-size: 2rem; /* Increase font size for the name */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.profile-card p {
+    font-size: 1.2rem; /* Increase font size for text */
+    margin-bottom: 10px;
 }
 
 /* Animations */
@@ -297,6 +339,6 @@ footer a:hover {
         margin: 10px 0;
     }
 }
-#incident-type-chart{
+.chart{
     width: 7000px;
 }
