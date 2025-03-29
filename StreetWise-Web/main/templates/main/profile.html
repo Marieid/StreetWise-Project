@@ -77,17 +77,15 @@
           <li class="list-group-item">
             <div class="d-flex justify-content-between">
               <strong>{{ incident.type }}</strong>
-              <small class="text-muted">
-                {% if incident.formatted_timestamp %} {{
-                incident.formatted_timestamp }} {% else %} {{
-                incident.timestamp|date:"F d, Y, h:i A" }} {% endif %}
-              </small>
             </div>
             <p class="mb-1 mt-2">
               {% if incident.comment %} {{ incident.comment }} {% else %}
               <em>No comment provided.</em>
               {% endif %}
             </p>
+            <div class="text-end text-muted small">
+              {{ incident.formatted_timestamp }}
+            </div>
           </li>
           {% empty %}
           <li class="list-group-item">
@@ -113,17 +111,15 @@
           <li class="list-group-item">
             <div class="d-flex justify-content-between">
               <strong>{{ archive.type }}</strong>
-              <small class="text-muted">
-                {% if archive.formatted_timestamp %} {{
-                archive.formatted_timestamp }} {% else %} {{ archive.timestamp
-                }} {% endif %}
-              </small>
             </div>
             <p class="mb-1 mt-2">
               {% if archive.description %} {{ archive.description }} {% else %}
               <em>No additional details.</em>
               {% endif %}
             </p>
+            <div class="text-end text-muted small">
+              {{ archive.formatted_timestamp }}
+            </div>
           </li>
           {% empty %}
           <li class="list-group-item">

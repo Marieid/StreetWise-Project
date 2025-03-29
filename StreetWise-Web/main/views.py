@@ -178,6 +178,21 @@ def profile(request):
     photo_url = user_data.get("photoURL", "")
     created_at = user_data.get("createdAt", "")
 
+    # Function to format timestamps
+    def format_timestamp(ts):
+        if ts:
+            if hasattr(ts, "to_pydatetime"):
+                dt = ts.to_pydatetime()
+            elif hasattr(ts, "to_datetime"):
+                dt = ts.to_datetime()
+            else:
+                dt = ts
+            return dt.strftime("%B %d, %Y, %I:%M %p")
+        return "N/A"
+
+    # Format the created_at field
+    created_at_formatted = format_timestamp(created_at)
+
     # Determine profile picture:
     if isinstance(photo_url, str) and photo_url.startswith("http"):
         profile_picture_url = photo_url
@@ -200,18 +215,6 @@ def profile(request):
     user_profile.photo_url = photo_url  # stored as provided from Firestore
     user_profile.save()
 
-    # Function to format timestamps
-    def format_timestamp(ts):
-        if ts:
-            if hasattr(ts, "to_pydatetime"):
-                dt = ts.to_pydatetime()
-            elif hasattr(ts, "to_datetime"):
-                dt = ts.to_datetime()
-            else:
-                dt = ts
-            return dt.strftime("%B %d, %Y, %I:%M %p")
-        return "N/A"
-
     # Query active incidents
     incidents_query = db.collection("incidents").where(
         "userId", "==", firebase_uid)
@@ -219,6 +222,7 @@ def profile(request):
     incidents = []
     for doc in incidents_docs:
         incident = doc.to_dict()
+        # Add formatted timestamp to each incident
         incident["formatted_timestamp"] = format_timestamp(
             incident.get("timestamp"))
         incidents.append(incident)
@@ -230,6 +234,7 @@ def profile(request):
     archived = []
     for doc in archived_docs:
         archive = doc.to_dict()
+        # Add formatted timestamp to each archived report
         archive["formatted_timestamp"] = format_timestamp(
             archive.get("timestamp"))
         archived.append(archive)
@@ -238,15 +243,15 @@ def profile(request):
         "incidents": incidents,
         "archived": archived,
     }
-    print(user_reports)
+
     return render(request, "main/profile.html", {
         "user_profile": user_profile,
         "user_email": user_email,
         "display_name": display_name,
         "credibility_score": credibility_score,
         "photo_url": profile_picture_url,
-        "created_at": created_at,
-        "user_reports": user_reports,
+        "created_at": created_at_formatted,  # Pass the formatted created_at
+        "user_reports": user_reports,  # Pass the incidents and archived reports
     })
 
 

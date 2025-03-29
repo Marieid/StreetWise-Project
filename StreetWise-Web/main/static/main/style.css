@@ -117,7 +117,6 @@ p {
 
 /* Buttons */
 .btn-primary {
-    background: linear-gradient(45deg, #007bff, #0056b3);
     border: none;
     padding: 10px 20px;
     font-size: 1rem;
@@ -126,7 +125,6 @@ p {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(45deg, #0056b3, #003d82);
     transform: scale(1.05);
 }
 
@@ -138,7 +136,7 @@ p {
     transform: scale(1.03);
 }
 
-/* Cards - Smaller Version */
+/* Cards -> Smaller Version */
 .card {
     border: none;
     border-radius: 8px;
@@ -150,7 +148,6 @@ p {
 }
 
 .card-header {
-    background: linear-gradient(45deg, #007bff, #0056b3);
     color: #fff;
     padding: 8px 12px;
     border-top-left-radius: 8px;
@@ -166,7 +163,7 @@ p {
 
 /* Hover effects for cards */
 .card:hover {
-    background-color: #2b839e !important;
+    background-color: #aac9d2 !important;
     transform: translateY(-3px) !important;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
     color: #fff !important;
@@ -174,7 +171,7 @@ p {
 
 /* Container for Card Images */
 .card-image-container {
-    height: 300px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
