@@ -223,38 +223,3 @@ export const fetchIncidentMarkers = async (region, setIncidentMarkers) => {
     console.error("Error fetching incident markers:", error);
   }
 };
-
-// Fetch user preferences from Firestore
-export const fetchUserPreferences = async () => {
-  try {
-    const user = auth.currentUser;
-    if (!user) throw new Error("User is not authenticated.");
-
-    const docRef = doc(db, "user_preferences", user.uid);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      return docSnap.data(); // Return the stored preferences
-    } else {
-      return null; // No preferences found
-    }
-  } catch (error) {
-    console.error("Error fetching preferences:", error);
-    return null;
-  }
-};
-
-// Save user preferences to Firestore
-export const saveUserPreferences = async (preferences) => {
-  try {
-    const user = auth.currentUser;
-    if (!user) throw new Error("User is not authenticated.");
-
-    const docRef = doc(db, "user_preferences", user.uid);
-    await setDoc(docRef, preferences, { merge: true });
-
-    console.log("Preferences updated successfully.");
-  } catch (error) {
-    console.error("Error saving preferences:", error);
-  }
-};

@@ -45,12 +45,12 @@ h3 {
 }
 
 header h1 {
-    color: #333;
+    color: #ffffff;
     font-size: 2.2rem;
 }
 
 header .text-primary {
-    color: #007bff !important;
+    color: #ffffff !important;
 }
 
 p {
@@ -148,6 +148,7 @@ p {
 }
 
 .card-header {
+
     color: #fff;
     padding: 8px 12px;
     border-top-left-radius: 8px;
@@ -163,15 +164,14 @@ p {
 
 /* Hover effects for cards */
 .card:hover {
-    background-color: #aac9d2 !important;
     transform: translateY(-3px) !important;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
-    color: #fff !important;
+    color: #000000 !important;
 }
 
 /* Container for Card Images */
 .card-image-container {
-    height: 500px;
+    height: 1000px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,7 +188,29 @@ p {
     border: 3px solid #19c5db;
     filter: brightness(0.9);
 }
+.green-route{
+    background: #479e4c;
+    color: #fff;
+}
 
+.yellow-route{
+    background: #f6c700;
+    color: #fff;
+}
+
+.red-route{
+    background: #e63946;
+    color: #fff;
+}
+
+/* Reusable large image class */
+.large-feature-img {
+    max-width: 100%;
+    width: 600px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
 /* Footer Styles */
 footer {
     background-color: #333;
@@ -212,7 +234,7 @@ footer a:hover {
 /* Hero Section */
 .hero-section {
     position: relative;
-    background: url("/static/main/images/placeholder.png") no-repeat center center/cover;
+    background: url("/static/main/images/SWMain.jpg") no-repeat center center;
     padding: 5rem 0;
     animation: fadeIn 1.5s ease-in-out;
 }
@@ -274,4 +296,7 @@ footer a:hover {
     .navbar-nav .nav-link {
         margin: 10px 0;
     }
+}
+#incident-type-chart{
+    width: 7000px;
 }

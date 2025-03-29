@@ -42,33 +42,6 @@ const UserProfile = ({ navigation }) => {
     useState(user?.photoURL ? parseInt(user.photoURL) : 0);
   const [credibilityScore, setCredibilityScore] = useState(0);
 
-  // User Preferences State
-  const [preferences, setPreferences] = useState({
-    prefers_well_lit_routes: true,
-    avoid_high_crime_areas: false,
-    receive_notifications: true,
-  });
-
-  // Fetch user data and preferences on component mount
-  useEffect(() => {
-    const fetchUserData = async () => {
-      if (user) {
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists()) {
-          setCredibilityScore(userDoc.data().credibilityScore);
-        }
-
-        // Fetch User Preferences
-        const prefsDoc = await getDoc(doc(db, "user_preferences", user.uid));
-        if (prefsDoc.exists()) {
-          setPreferences(prefsDoc.data());
-        }
-      }
-    };
-
-    fetchUserData();
-  }, [user]);
-
   // Handle saving profile changes
   const handleSaveProfile = async () => {
     try {
@@ -97,21 +70,6 @@ const UserProfile = ({ navigation }) => {
       Alert.alert("Profile updated successfully");
     } catch (error) {
       Alert.alert("Error updating profile", error.message);
-    }
-  };
-
-  // Handle saving user preferences
-  const handleSavePreferences = async () => {
-    try {
-      if (!user) throw new Error("User is not authenticated");
-
-      const prefsDocRef = doc(db, "user_preferences", user.uid);
-      await setDoc(prefsDocRef, preferences, { merge: true });
-
-      Alert.alert("Preferences saved successfully!");
-    } catch (error) {
-      console.error("Error saving preferences:", error);
-      Alert.alert("Error", "Failed to save preferences. Please try again.");
     }
   };
 
@@ -155,47 +113,6 @@ const UserProfile = ({ navigation }) => {
           style={styles.profilePictureList}
           contentContainerStyle={{ paddingHorizontal: 10 }}
         />
-      </View>
-
-      <View style={styles.preferencesContainer}>
-        <Text style={styles.preferenceHeader}>User Preferences</Text>
-
-        <View style={styles.preferenceItem}>
-          <Text>Prefer Well-Lit Routes</Text>
-          <Switch
-            value={preferences.prefers_well_lit_routes}
-            onValueChange={(value) =>
-              setPreferences({ ...preferences, prefers_well_lit_routes: value })
-            }
-          />
-        </View>
-
-        <View style={styles.preferenceItem}>
-          <Text>Avoid High-Crime Areas</Text>
-          <Switch
-            value={preferences.avoid_high_crime_areas}
-            onValueChange={(value) =>
-              setPreferences({ ...preferences, avoid_high_crime_areas: value })
-            }
-          />
-        </View>
-
-        <View style={styles.preferenceItem}>
-          <Text>Receive Safety Notifications</Text>
-          <Switch
-            value={preferences.receive_notifications}
-            onValueChange={(value) =>
-              setPreferences({ ...preferences, receive_notifications: value })
-            }
-          />
-        </View>
-
-        <TouchableOpacity
-          style={[styles.button, styles.saveButton]}
-          onPress={handleSavePreferences}
-        >
-          <Text style={styles.buttonText}>Save Preferences</Text>
-        </TouchableOpacity>
       </View>
 
       <View style={styles.buttonContainerProfile}>
